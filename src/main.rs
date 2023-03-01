@@ -51,16 +51,18 @@ impl Expression {
         let mut stack: Vec<String>= Vec::new();
         let temp = self.postfix.split_whitespace();
         for i in temp{
+            println!("{}", is_string_number(i));
             println!("Value is: {:?}",i);
+
         }
         println!("______________________");
     }
 }
 
 //Helper method to make checking strings easy
-fn is_string_number(str: String) -> bool {
+fn is_string_number(str: &str) -> bool {
     for c in str.chars(){
-        if c.is_alphabetic(){
+        if !c.is_numeric(){
             return false;
         }
     }
