@@ -3,12 +3,8 @@ use std::fs::{File, OpenOptions};
 use std::io::{BufRead, BufReader, BufWriter, Write, Error};
 use std::process::exit;
 fn main() {
-    let expr_list: Vec<Expression> = build_expression_list("./src/input.txt").unwrap();
-
-    for expr in expr_list{
-        println!("our expression is: {:?}", expr.postfix);
-    }
-    
+    let mut expr_list: Vec<Expression> = build_expression_list("./src/input.txt").unwrap();
+    solve_list(expr_list);
 }
 
 fn build_expression_list(in_file: &str) -> Result<Vec<Expression>, &'static str>{
@@ -26,9 +22,11 @@ fn build_expression_list(in_file: &str) -> Result<Vec<Expression>, &'static str>
     Ok(expr_list)
 }
 
-//fn solve_list(exp_list: Vec<Expression>){
-
-//}
+fn solve_list(exp_list: Vec<Expression>){
+    for mut i in exp_list{
+        i.solve();
+    }
+}
 
 //fn sort_list(exp_list: Vec<Expression>){
     
@@ -47,8 +45,24 @@ struct Expression {
 impl Expression {
     fn expression(line: String) -> Self{
         Expression{postfix: line, expr: Vec::new(), infix: Vec::new()}
+
     }
     fn solve(&mut self){
-        
+        let mut stack: Vec<String>= Vec::new();
+        let temp = self.postfix.split_whitespace();
+        for i in temp{
+            println!("Value is: {:?}",i);
+        }
+        println!("______________________");
     }
+}
+
+//Helper method to make checking strings easy
+fn is_string_number(str: String) -> bool {
+    for c in str.chars(){
+        if c.is_alphabetic(){
+            return false;
+        }
+    }
+    return true;
 }
