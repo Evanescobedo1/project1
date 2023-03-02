@@ -1,0 +1,12 @@
+Authors Carson Burly Evan Escobedo
+Date Mar 2, 2023
+
+This program will take a document containing postfix expression, convet them to infix notation evaluate 
+and sort them, before writing them to a text file.
+
+To compile
+    cargo build
+    from the project1 directory
+
+To run
+    cargo --release <Path to input file> <Path to file out destination>
